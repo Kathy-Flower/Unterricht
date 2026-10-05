@@ -33,6 +33,7 @@ SCHRIFT = "Calibri"
 def neues_dokument(quer=False, rand_cm=1.8, schriftgroesse=12):
     d = Document()
     s = d.sections[0]
+    s.page_width, s.page_height = Cm(21.0), Cm(29.7)  # DIN A4
     if quer:
         s.orientation = WD_ORIENT.LANDSCAPE
         s.page_width, s.page_height = s.page_height, s.page_width
@@ -51,7 +52,7 @@ def neues_dokument(quer=False, rand_cm=1.8, schriftgroesse=12):
 
 def _text(p, text, groesse=None, fett=False):
     """Fügt Text mit **fett** / _kursiv_ Markup an Absatz p an."""
-    for teil in re.split(r"(\*\*[^*]+\*\*|_[^_]+_)", text):
+    for teil in re.split(r"(\*\*[^*]+\*\*|(?<!\w)_(?=\w)[^_]+(?<=\w)_(?!\w))", text):
         if not teil:
             continue
         if teil.startswith("**"):
@@ -189,11 +190,18 @@ def merkkasten(d, ueberschrift_text, zeilen, farbe=None):
     """Grau hinterlegter, umrandeter Kasten (Merke / Wissen / Beispiel)."""
     t = d.add_table(rows=1, cols=1); _rahmen(t, staerke=12)
     z = t.cell(0, 0); _schattierung(z, farbe or GRAU)
+    _nicht_trennen(t.rows[0])
     _text(z.paragraphs[0], ueberschrift_text, fett=True)
+    z.paragraphs[0].paragraph_format.keep_with_next = True
     for zeile in zeilen:
-        absatz(z, zeile, abstand_nach=2)
+        absatz(z, zeile, abstand_nach=2).paragraph_format.keep_with_next = True
     d.add_paragraph()
     return t
+
+
+def _nicht_trennen(zeile):
+    trPr = zeile._tr.get_or_add_trPr()
+    c = OxmlElement("w:cantSplit"); trPr.append(c)
 
 
 def tabelle(d, kopf, zeilen, breiten_cm=None, kopf_grau=True, schrift=None):
@@ -221,6 +229,8 @@ def tippkarten(d, karten, titel_text="Tippkarten", spalten=2):
     absatz(d, f"✂  {titel_text}", fett=True)
     zeilen = math.ceil(len(karten) / spalten)
     t = d.add_table(rows=zeilen, cols=spalten); _rahmen(t, art="dashed", staerke=6)
+    for r in t.rows:
+        _nicht_trennen(r)
     for k, (kopf, text) in enumerate(karten):
         z = t.cell(k // spalten, k % spalten)
         _text(z.paragraphs[0], kopf, fett=True)
@@ -233,7 +243,7 @@ def tippkarten(d, karten, titel_text="Tippkarten", spalten=2):
 def verlaufsplan(d, zeilen):
     """zeilen: Liste von (Phase, Zeit, Unterrichtsgeschehen, Sozialform/Methode, Medien)."""
     return tabelle(d, ["Phase", "Zeit", "Unterrichtsgeschehen", "Sozialform / Methode", "Medien"],
-                   zeilen, breiten_cm=[2.6, 1.6, 8.0, 3.0, 2.6], schrift=10)
+                   zeilen, breiten_cm=[2.7, 1.5, 7.8, 2.9, 2.5], schrift=10)
 
 
 # ---------------------------------------------------------------- Bewertung

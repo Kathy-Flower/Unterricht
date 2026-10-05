@@ -5,9 +5,14 @@ description: Klassenarbeit Mathe Klasse 9 (60 min, Gruppe A/B) mit Erwartungshor
 
 # Klassenarbeit mit Erwartungshorizont
 
-**Eingabe**: Themen/Kapitel. Nachfragen nur, wenn nicht klar: Datum, ob ein
-hilfsmittelfreier Teil gewünscht ist (Standard: **ja**, ca. 15 min, ohne Taschenrechner,
-wird danach eingesammelt), ob Gruppe A/B gewünscht ist (Standard: **ja**).
+**Eingabe**: Themen/Kapitel. Nachfragen nur, wenn nicht klar: Datum und Wiederholungsthema.
+
+**Standardaufbau (Vorgabe der Lehrerin)**:
+- **Teil A hilfsmittelfrei, 20 min** (ohne Taschenrechner und Formelsammlung; wird nach
+  20 min eingesammelt, erst dann gibt es Teil B).
+- **Teil B mit Taschenrechner, 40 min.**
+- **Wiederholungsthema ca. 10 % der Punkte** (für KA 1 in Klasse 9: **Terme**).
+- Gruppe A und B.
 
 ## Vorgaben
 

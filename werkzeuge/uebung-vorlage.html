@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TITEL</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6fa;--card:#fff;--ink:#1c2740;--muted:#5b6785;--line:#cfd6e4;--acc:#2f5bd3;--ok:#1d7a4c;--okbg:#e5f4ec;--bad:#b3261e;--badbg:#fbe9e7;
+ padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11161f;--card:#1a2130;--ink:#e6ebf5;--muted:#9aa6bf;--line:#33405a;--acc:#7d9cff;--ok:#6fd3a0;--okbg:#173327;--bad:#ff8f86;--badbg:#3a1d1b}}
+:root[data-theme="dark"]{--bg:#11161f;--card:#1a2130;--ink:#e6ebf5;--muted:#9aa6bf;--line:#33405a;--acc:#7d9cff;--ok:#6fd3a0;--okbg:#173327;--bad:#ff8f86;--badbg:#3a1d1b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.5 "Atkinson Hyperlegible",system-ui,sans-serif}
+main{max-width:44rem;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:1.6rem;line-height:1.2;margin:6px 0 4px}
+.sub{color:var(--muted);margin:0 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.kopf{display:flex;justify-content:space-between;gap:8px;font-weight:700;margin-bottom:6px}
+.stern{color:var(--muted);font-weight:400;white-space:nowrap}
+.frage{margin:0 0 10px}
+input[type=text]{width:100%;font:inherit;padding:10px;border:2px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+.opt{display:block;padding:8px 10px;border:2px solid var(--line);border-radius:6px;margin:6px 0;cursor:pointer}
+.opt input{margin-right:8px}
+button{font:inherit;font-weight:700;padding:12px 20px;border:0;border-radius:8px;background:var(--acc);color:#fff;cursor:pointer}
+button.zweit{background:transparent;color:var(--acc);border:2px solid var(--acc)}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.card.richtig{border-color:var(--ok);background:var(--okbg)}
+.card.falsch{border-color:var(--bad);background:var(--badbg)}
+.loesung{margin-top:10px;padding-top:8px;border-top:1px dashed var(--line)}
+.ok{color:var(--ok);font-weight:700}.bad{color:var(--bad);font-weight:700}
+.ergebnis{text-align:center}
+.note{font-size:3rem;font-weight:700;line-height:1;margin:8px 0}
+.balken{height:12px;background:var(--line);border-radius:6px;overflow:hidden;margin:10px 0}
+.balken i{display:block;height:100%;background:var(--acc)}
+.knoepfe{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.hinweis{color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<main>
+<h1 id="titel"></h1>
+<p class="sub" id="untertitel"></p>
+<div id="ergebnis"></div>
+<form id="aufgaben" autocomplete="off"></form>
+<div class="knoepfe"><button id="auswerten" type="button">Auswerten</button></div>
+<p class="hinweis">Kommazahlen mit Komma oder Punkt. Es werden keine Daten gespeichert oder gesendet.</p>
+</main>
+<script>
+/* ================== INHALT (nur diesen Teil anpassen) ==================
+ Typen:
+  {typ:"zahl", frage:"…", loesung:"7", alternativen:["7,0"], toleranz:0, erklaerung:"…", sterne:1}
+  {typ:"mc",   frage:"…", optionen:["…","…"], loesung:1, erklaerung:"…", sterne:2}   (loesung = Index ab 0)
+  {typ:"text", frage:"…", loesung:"irrational", alternativen:["irrationale Zahl"], erklaerung:"…"}
+ Mathe in $…$ (KaTeX), z. B. $\sqrt{49}$.  punkte: optional (Standard 1).
+======================================================================== */
+var TITEL = "TITEL";
+var UNTERTITEL = "UNTERTITEL";
+var AUFGABEN = [
+  {typ:"zahl", frage:"Berechne $\\sqrt{49}$.", loesung:"7", erklaerung:"$7^2 = 49$", sterne:1},
+  {typ:"mc", frage:"Welche Zahl ist irrational?", optionen:["$\\sqrt{16}$","$\\sqrt{2}$","$0{,}\\overline{3}$"], loesung:1, erklaerung:"$\\sqrt{2}$ ist kein Bruch.", sterne:2}
+];
+/* ====================================================================== */
+
+// Notenschlüssel der Fachschaft (90/75/60/45/20), Tendenzen in Dritteln
+var NOTEN = [[96.7,"1+"],[93.3,"1"],[90,"1−"],[85,"2+"],[80,"2"],[75,"2−"],[70,"3+"],[65,"3"],[60,"3−"],
+             [55,"4+"],[50,"4"],[45,"4−"],[36.7,"5+"],[28.3,"5"],[20,"5−"],[0,"6"]];
+var WORT = {"1":"sehr gut","2":"gut","3":"befriedigend","4":"ausreichend","5":"mangelhaft","6":"ungenügend"};
+
+var form = document.getElementById("aufgaben");
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function mathe(el){ if(window.renderMathInElement) renderMathInElement(el,{delimiters:[{left:"$",right:"$",display:false}],throwOnError:false}); }
+
+function aufbauen(){
+  document.getElementById("titel").textContent = TITEL;
+  document.getElementById("untertitel").textContent = UNTERTITEL;
+  document.title = TITEL;
+  var h = "";
+  AUFGABEN.forEach(function(a,k){
+    h += '<div class="card" id="k'+k+'"><div class="kopf"><span>Aufgabe '+(k+1)+'</span><span class="stern">'+
+         (a.sterne? "★".repeat(a.sterne)+"☆".repeat(3-a.sterne) : "")+'</span></div><p class="frage">'+a.frage+'</p>';
+    if(a.typ==="mc"){
+      a.optionen.forEach(function(o,i){ h += '<label class="opt"><input type="radio" name="a'+k+'" value="'+i+'">'+o+'</label>'; });
+    } else {
+      h += '<input type="text" name="a'+k+'" aria-label="Antwort zu Aufgabe '+(k+1)+'"'+(a.typ==="zahl"?' inputmode="decimal"':'')+'>';
+    }
+    h += '<div class="loesung" hidden></div></div>';
+  });
+  form.innerHTML = h;
+  mathe(document.body);
+}
+
+function norm(s){ return String(s).trim().toLowerCase().replace(/\s+/g,"").replace(/\./g,",").replace(/€|cm|m²|cm²|°/g,""); }
+function alsZahl(s){ var t = String(s).trim().replace(/\s/g,"").replace(",","."); return t!=="" && isFinite(t) ? parseFloat(t) : NaN; }
+
+function pruefe(a, wert){
+  if(a.typ==="mc") return wert === a.loesung;
+  var ziele = [a.loesung].concat(a.alternativen||[]);
+  if(a.typ==="zahl"){
+    var x = alsZahl(wert);
+    if(!isNaN(x)) return ziele.some(function(z){ var y = alsZahl(z); return !isNaN(y) && Math.abs(x-y) <= (a.toleranz||1e-9); });
+  }
+  return ziele.some(function(z){ return norm(z)===norm(wert); });
+}
+
+function note(p){ for(var i=0;i<NOTEN.length;i++) if(p >= NOTEN[i][0]-1e-9) return NOTEN[i][1]; return "6"; }
+
+function auswerten(){
+  var erreicht = 0, gesamt = 0;
+  AUFGABEN.forEach(function(a,k){
+    var pkt = a.punkte || 1, wert;
+    gesamt += pkt;
+    if(a.typ==="mc"){ var c = form.querySelector('input[name=a'+k+']:checked'); wert = c ? +c.value : -1; }
+    else wert = form.elements["a"+k].value;
+    var ok = pruefe(a, wert);
+    if(ok) erreicht += pkt;
+    var karte = document.getElementById("k"+k), l = karte.querySelector(".loesung");
+    karte.className = "card " + (ok ? "richtig" : "falsch");
+    var richtige = a.typ==="mc" ? a.optionen[a.loesung] : esc(a.loesung);
+    l.innerHTML = (ok ? '<span class="ok">✓ richtig</span>' : '<span class="bad">✗ leider falsch</span>') +
+      ' · Lösung: ' + richtige + (a.erklaerung ? '<br>' + a.erklaerung : '');
+    l.hidden = false;
+  });
+  var p = gesamt ? erreicht/gesamt*100 : 0, n = note(p);
+  var e = document.getElementById("ergebnis");
+  e.innerHTML = '<div class="card ergebnis"><div>Du hast <b>'+erreicht+' von '+gesamt+'</b> Punkten erreicht ('+
+    p.toFixed(0)+' %).</div><div class="balken"><i style="width:'+p.toFixed(0)+'%"></i></div>'+
+    '<div class="note">'+n+'</div><div>'+WORT[n.charAt(0)]+'</div>'+
+    '<p class="hinweis">Unten siehst du bei jeder Aufgabe die Lösung.</p>'+
+    '<div class="knoepfe" style="justify-content:center"><button type="button" class="zweit" onclick="neu()">Nochmal versuchen</button></div></div>';
+  mathe(document.body);
+  document.getElementById("auswerten").hidden = true;
+  form.querySelectorAll("input").forEach(function(i){ i.disabled = true; });
+  e.scrollIntoView({behavior:"smooth"});
+}
+
+function neu(){
+  document.getElementById("ergebnis").innerHTML = "";
+  document.getElementById("auswerten").hidden = false;
+  aufbauen(); window.scrollTo(0,0);
+}
+
+document.getElementById("auswerten").onclick = auswerten;
+window.addEventListener("DOMContentLoaded", function(){ aufbauen(); });
+</script>
+</body>
+</html>

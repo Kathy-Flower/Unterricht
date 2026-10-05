@@ -39,7 +39,7 @@ Im Repository: **Settings → Pages → Build and deployment**
 
 Nach 1–2 Minuten ist der Test erreichbar unter:
 
-**https://kathy-flower.github.io/unterricht/**
+**https://kathy-flower.github.io/Unterricht/**
 
 Diesen Link an die Schülerinnen und Schüler geben.
 

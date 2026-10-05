@@ -13,6 +13,9 @@ nach längerer Elternzeit zurück). Antworte immer auf **Deutsch**, duze sie, se
   Bei Übungswebsites zusätzlich den Link nennen: `https://kathy-flower.github.io/Unterricht/uebungen/<datei>.html`
 - Rechne **jede** Aufgabe und Lösung selbst nach (bei Zahlen gern mit Python). Fehler im
   Erwartungshorizont oder in Lösungen sind das Schlimmste, was passieren kann.
+- **Übersichtsseite** (Claude-Artifact, privat): https://claude.ai/artifact/5aM1BrzUWbW43aAK5aTZRp –
+  Quelle `werkzeuge/uebersicht/index.html`. Nach jedem neuen Material dort die Liste `STUNDEN`
+  (Status/Dateien) aktualisieren und mit dem Artifact-Tool unter dieser `url` neu veröffentlichen.
 - Nach Rückmeldung der Lehrerin („mach X immer so“): diese Regel dauerhaft hier oder in
   `grundlagen/` eintragen.
 

@@ -1,0 +1,228 @@
+<title>Mathe 9 – Unterrichtsplanung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: Schulheft-Look – Karopapier als Grund, Inhalt in einer Spalte, Reihe als Zeitleiste */
+:root{
+  --paper:#fbfcfe; --grid:#e3e9f3; --ink:#1d2f5c; --text:#253047; --muted:#5f6b82;
+  --line:#cfd8e6; --card:#ffffff; --red:#c8322a; --redbg:#fbeceb;
+  --ok:#1f7a4f; --okbg:#e6f3ec; --warn:#9a6a00; --warnbg:#fbf3dc; --todo:#5f6b82; --todobg:#eef1f6;
+  --display:"Bitter",Georgia,serif; --body:"Atkinson Hyperlegible",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#121826; --grid:#1b2436; --ink:#a9c0ff; --text:#dfe5f1; --muted:#9aa6bd; --line:#2e3a52; --card:#182033;
+  --red:#ff857c; --redbg:#3a1f1e; --ok:#6fd3a0; --okbg:#173327; --warn:#f0c35a; --warnbg:#3a3018; --todo:#9aa6bd; --todobg:#222b3d; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#121826; --grid:#1b2436; --ink:#a9c0ff; --text:#dfe5f1; --muted:#9aa6bd; --line:#2e3a52; --card:#182033;
+  --red:#ff857c; --redbg:#3a1f1e; --ok:#6fd3a0; --okbg:#173327; --warn:#f0c35a; --warnbg:#3a3018; --todo:#9aa6bd; --todobg:#222b3d; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;color:var(--text);font:16px/1.55 var(--body);background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:20px 20px}
+.wrap{max-width:62rem;margin:0 auto;padding-inline:16px;padding-block:28px 64px;display:grid;gap:28px}
+h1,h2,h3{font-family:var(--display);color:var(--ink);text-wrap:balance;margin:0}
+h1{font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.15}
+h2{font-size:1.35rem;margin-bottom:12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+h2 small{font:500 .8rem var(--mono);color:var(--muted);letter-spacing:.02em}
+h3{font-size:1.05rem}
+a{color:var(--ink);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--ink);outline-offset:2px;border-radius:4px}
+.kopf{display:grid;gap:10px}
+.kopf p{margin:0;color:var(--muted)}
+.fakten{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.fakten li{font:500 .82rem var(--mono);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 11px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+/* Als Nächstes */
+.next{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:12px}
+.next .panel{display:grid;gap:6px;align-content:start}
+.next .datum{font:500 .85rem var(--mono);color:var(--muted)}
+.next.focus .panel:first-child{border:2px solid var(--red)}
+/* Pills */
+.pill{display:inline-block;font:500 .72rem var(--mono);letter-spacing:.03em;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.p-ok{background:var(--okbg);color:var(--ok)} .p-warn{background:var(--warnbg);color:var(--warn)}
+.p-todo{background:var(--todobg);color:var(--todo)} .p-red{background:var(--redbg);color:var(--red)}
+/* Jahresplan */
+.jahr{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:10px;margin:0;padding:0;list-style:none}
+.jahr li{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px;display:grid;gap:4px;align-content:start}
+.jahr li.aktiv{border:2px solid var(--ink)}
+.jahr .nr{font:500 .75rem var(--mono);color:var(--muted)}
+.jahr b{font-family:var(--display);color:var(--ink);font-weight:700;line-height:1.25}
+/* Zeitleiste */
+.tl{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.tl li{display:grid;grid-template-columns:5.6rem 1fr;gap:14px;padding:12px 0;border-top:1px dashed var(--line)}
+.tl li:first-child{border-top:0}
+.tl .d{font:500 .85rem var(--mono);color:var(--muted);line-height:1.3}
+.tl .d span{display:block;font-size:.75rem}
+.tl .inh{display:grid;gap:4px;min-width:0}
+.tl .zeile{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline}
+.tl .titel{font-weight:700;color:var(--text)}
+.tl .meta{color:var(--muted);font-size:.9rem}
+.tl .files{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.tl .files a{font-size:.85rem;border:1px solid var(--line);border-radius:6px;padding:2px 8px;text-decoration:none;background:var(--paper)}
+.tl .files a:hover{border-color:var(--ink)}
+.tl li.vorbei .titel{color:var(--muted);font-weight:400}
+.tl li.heute{background:linear-gradient(90deg,var(--redbg),transparent 70%);border-radius:6px;padding-inline:8px;margin-inline:-8px}
+.tl li.ferien{grid-template-columns:1fr;text-align:center;color:var(--muted);font:500 .85rem var(--mono);padding:10px 0;border-top:2px solid var(--line)}
+details.alt summary{cursor:pointer;color:var(--ink);font-weight:700;padding:6px 0}
+/* Zweispaltig */
+.zwei{display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:16px}
+.liste{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.liste li{display:grid;gap:2px;min-width:0}
+.liste .klein{color:var(--muted);font-size:.88rem}
+.cmd{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.cmd code{font:500 .9rem var(--mono);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:2px 8px;overflow-wrap:anywhere}
+.cmd button{font:500 .75rem var(--mono);border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:6px;padding:2px 8px;cursor:pointer}
+.hinweis{border-left:3px solid var(--red);padding:6px 12px;background:var(--redbg);border-radius:0 6px 6px 0;color:var(--text);font-size:.92rem}
+footer{color:var(--muted);font-size:.85rem}
+@media (max-width:520px){.tl li{grid-template-columns:4.4rem 1fr;gap:10px}}
+</style>
+
+<div class="wrap">
+
+<header class="kopf">
+  <h1>Mathe 9 – Unterrichtsplanung</h1>
+  <p>Gymnasium NRW · Schuljahr 2026/27 · Stand <span class="mono" id="stand">05.10.2026</span></p>
+  <ul class="fakten">
+    <li>31 SuS · heterogen</li><li>Mi 45 min</li><li>Do 90 min</li><li>iPads · GeoGebra · Beamer</li><li>KA: 20 min ohne + 40 min mit TR</li>
+  </ul>
+</header>
+
+<section aria-labelledby="h-next">
+  <h2 id="h-next">Als Nächstes</h2>
+  <div class="next focus" id="next"></div>
+</section>
+
+<section aria-labelledby="h-jahr">
+  <h2 id="h-jahr">Jahresplan <small>schulinternes Curriculum</small></h2>
+  <ol class="jahr">
+    <li class="aktiv"><span class="nr">UV 1</span><b>Wurzeln</b><span class="pill p-warn">läuft seit 02.09.</span></li>
+    <li><span class="nr">UV 2</span><b>Quadratische Funktionen</b><span class="pill p-todo">ab Nov.</span></li>
+    <li><span class="nr">UV 3</span><b>Kreis und Körper</b><span class="pill p-todo">geplant</span></li>
+    <li><span class="nr">UV 4</span><b>Potenzen</b><span class="pill p-todo">geplant</span></li>
+    <li><span class="nr">UV 5</span><b>Pythagoras, Pyramide, Kegel, Kugel</b><span class="pill p-todo">geplant</span></li>
+    <li><span class="nr">UV 6</span><b>Stochastik</b><span class="pill p-todo">geplant</span></li>
+  </ol>
+</section>
+
+<section aria-labelledby="h-reihe" class="panel">
+  <h2 id="h-reihe">Reihe 1: Wurzeln <small>16 Stunden · 02.09. – 05.11.</small></h2>
+  <p class="meta" style="margin:0 0 6px;color:var(--muted)">Reihenplanung: <a href="https://github.com/Kathy-Flower/Unterricht/raw/main/reihen/01-wurzeln/00-reihenplanung.docx" target="_blank" rel="noopener">00-reihenplanung.docx</a></p>
+  <details class="alt" id="alt"><summary>Bereits unterrichtet (10 Stunden, nachträglich strukturiert)</summary><ol class="tl" id="tl-alt"></ol></details>
+  <ol class="tl" id="tl"></ol>
+</section>
+
+<div class="zwei">
+  <section aria-labelledby="h-ka" class="panel">
+    <h2 id="h-ka">Klassenarbeiten</h2>
+    <ul class="liste">
+      <li><span><b>KA 1 · Do 05.11.2026</b> <span class="pill p-ok">fertig</span></span>
+        <span class="klein">Wurzeln + Terme (11 %) · 45 Punkte · AFB 33 / 47 / 20 % · Gruppe A/B + Erwartungshorizont</span></li>
+      <li><span><b>KA 2</b> <span class="pill p-todo">offen</span></span><span class="klein">Quadratische Funktionen</span></li>
+    </ul>
+    <p class="hinweis">Klassenarbeiten liegen aus Geheimhaltungsgründen nicht auf GitHub. Speichere sie in <b>Schule › Mathe › Klasse 9 › klassenarbeiten</b> auf deinem Mac.</p>
+  </section>
+
+  <section aria-labelledby="h-links" class="panel">
+    <h2 id="h-links">Links für die Klasse</h2>
+    <ul class="liste">
+      <li><a href="https://kathy-flower.github.io/Unterricht/" target="_blank" rel="noopener">Diagnosetest Mathe und Deutsch</a><span class="klein">mit Ergebnisversand an Google-Tabelle (optional)</span></li>
+      <li><a href="https://kathy-flower.github.io/Unterricht/wurzeln.html" target="_blank" rel="noopener">Diagnosetest Wurzeln mit Lernkarten</a><span class="klein">Selbstkontrolle</span></li>
+      <li><span>Übungswebsite Wurzeln <span class="pill p-todo">für 15.10. geplant</span></span><span class="klein">mit Note 1+ bis 6, ohne Datenerfassung</span></li>
+    </ul>
+  </section>
+</div>
+
+<div class="zwei">
+  <section aria-labelledby="h-cmd" class="panel">
+    <h2 id="h-cmd">So beauftragst du mich</h2>
+    <p class="klein" style="margin:0 0 10px;color:var(--muted)">In einer Claude-Code-Sitzung mit dem Repository <b>Unterricht</b>:</p>
+    <ul class="liste" id="cmds"></ul>
+  </section>
+
+  <section aria-labelledby="h-std" class="panel">
+    <h2 id="h-std">Deine Standards</h2>
+    <ul class="liste">
+      <li><b>Jede Stunde problemorientiert</b><span class="klein">mit Bezug zur Lebenswelt von 14–15-Jährigen</span></li>
+      <li><b>Differenzierung immer</b><span class="klein">★ / ★★ / ★★★, Tippkarten, Lösungen zur Selbstkontrolle</span></li>
+      <li><b>Kooperative Methoden</b><span class="klein">Ich – Du – Wir, Klasse kennt alle Methoden</span></li>
+      <li><b>Material ohne Buch</b><span class="klein">Word, ohne Kopfzeile, schwarz-weiß-tauglich</span></li>
+      <li><b>Klassenarbeiten</b><span class="klein">60 min, AFB 30 / 50 / 20, Notenschlüssel 90 / 75 / 60 / 45 / 20 %</span></li>
+    </ul>
+  </section>
+</div>
+
+<footer>Dateien öffnen sich über GitHub und werden als Word-Datei heruntergeladen. Diese Seite aktualisiere ich, wenn neues Material entsteht.</footer>
+</div>
+
+<script>
+var RAW = "https://github.com/Kathy-Flower/Unterricht/raw/main/reihen/01-wurzeln/";
+var STUNDEN = [
+  ["2026-09-02",45,"Einstieg & Vorwissen: Quadratzahlen, Diagnose","Kugellager",[]],
+  ["2026-09-03",90,"Quadratwurzeln: von der Fläche zur Seitenlänge","Think-Pair-Share",[]],
+  ["2026-09-09",45,"Übung Quadratwurzeln","Lerntempoduett",[]],
+  ["2026-09-10",90,"Näherungsverfahren I: Intervallschachtelung","Partnerarbeit",[]],
+  ["2026-09-16",45,"Näherungsverfahren II: Heron-Verfahren","Think-Pair-Share",[]],
+  ["2026-09-17",90,"Übung Näherungsverfahren","Stationen",[]],
+  ["2026-09-23",45,"Wurzelgesetze entdecken","Think-Pair-Share",[]],
+  ["2026-09-24",90,"Geschickt mit Wurzeln rechnen","Lerntempoduett",[]],
+  ["2026-09-30",45,"Übung Wurzelgesetze","Partnerkontrolle",[]],
+  ["2026-10-01",90,"Vertiefung Wurzelterme","Fehlerdetektiv",[]],
+  ["2026-10-07",45,"Ist √2 ein Bruch? Irrationale Zahlen","Think-Pair-Share · Exit-Ticket",
+    [["Entwurf","11-stunde-irrationale-zahlen.docx"],["Material","11-material-irrationale-zahlen.docx"]]],
+  ["2026-10-08",90,"Vom DIN-A4-Blatt zum Minecraft-Würfel: reelle Zahlen und n-te Wurzel","Placemat · Lerntempoduett",
+    [["Entwurf","12-stunde-reelle-zahlen-n-te-wurzel.docx"],["Material","12-material-reelle-zahlen-n-te-wurzel.docx"]]],
+  ["2026-10-14",45,"Wiederholung Terme mit binomischen Formeln","Fehlerdetektiv",null],
+  ["2026-10-15",90,"Lerntheke & Selbsteinschätzung, Übungswebsite für die Ferien","Stationen",null],
+  ["FERIEN"],
+  ["2026-11-04",45,"Fragestunde / Wiederholung","Kugellager",null],
+  ["2026-11-05",90,"Klassenarbeit 1 (60 min) + Start Quadratische Funktionen","–","KA"]
+];
+var TAGE = ["So","Mo","Di","Mi","Do","Fr","Sa"];
+function heute(){ var d=new Date(); d.setHours(0,0,0,0); return d; }
+function fmt(d){ return ("0"+d.getDate()).slice(-2)+"."+("0"+(d.getMonth()+1)).slice(-2)+"."; }
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+
+function status(s){
+  if(s[4]==="KA") return '<span class="pill p-ok">KA fertig</span>';
+  if(s[4]===null) return '<span class="pill p-todo">noch zu planen</span>';
+  if(s[4].length) return '<span class="pill p-ok">Material fertig</span>';
+  return '<span class="pill p-todo">unterrichtet</span>';
+}
+
+function zeile(s,h){
+  if(s[0]==="FERIEN") return '<li class="ferien">Herbstferien 17.10. – 31.10.2026</li>';
+  var d=new Date(s[0]+"T00:00:00"), cls=d<h?"vorbei":(d.getTime()===h.getTime()?"heute":"");
+  var files=(s[4]&&s[4].length&&s[4]!=="KA")?'<div class="files">'+s[4].map(function(f){
+    return '<a href="'+RAW+f[1]+'" target="_blank" rel="noopener">'+esc(f[0])+' ↓</a>';}).join("")+'</div>':"";
+  return '<li class="'+cls+'"><div class="d">'+TAGE[d.getDay()]+' '+fmt(d)+'<span>'+s[1]+' min</span></div>'+
+    '<div class="inh"><div class="zeile"><span class="titel">'+esc(s[2])+'</span>'+status(s)+'</div>'+
+    '<span class="meta">'+esc(s[3])+'</span>'+files+'</div></li>';
+}
+
+(function(){
+  var h=heute(), alt="", neu="", naechste=[];
+  STUNDEN.forEach(function(s,i){
+    if(i<10) alt+=zeile(s,h); else neu+=zeile(s,h);
+    if(s[0]!=="FERIEN" && new Date(s[0]+"T00:00:00")>=h && naechste.length<3) naechste.push(s);
+  });
+  document.getElementById("tl-alt").innerHTML=alt;
+  document.getElementById("tl").innerHTML=neu;
+  document.getElementById("next").innerHTML=naechste.map(function(s){
+    var d=new Date(s[0]+"T00:00:00");
+    return '<div class="panel"><span class="datum">'+TAGE[d.getDay()]+' '+fmt(d)+' · '+s[1]+' min</span><h3>'+esc(s[2])+'</h3>'+status(s)+'</div>';
+  }).join("") || '<div class="panel">Keine weiteren Stunden geplant.</div>';
+  var cmds=[["/stunde Terme, Mittwoch 14.10.","nächste Stunde planen"],["/uebung Wurzeln","Übungswebsite für die Ferien"],
+            ["/arbeitsblatt binomische Formeln","differenziertes Arbeitsblatt"],["/reihe Quadratische Funktionen","nächste Reihe"],
+            ["/klassenarbeit …","Klassenarbeit mit Erwartungshorizont"]];
+  document.getElementById("cmds").innerHTML=cmds.map(function(c,i){
+    return '<li><div class="cmd"><code id="c'+i+'">'+esc(c[0])+'</code><button type="button" data-i="'+i+'">kopieren</button></div><span class="klein">'+esc(c[1])+'</span></li>';
+  }).join("");
+  document.getElementById("cmds").addEventListener("click",function(e){
+    var b=e.target.closest("button"); if(!b) return;
+    var t=document.getElementById("c"+b.dataset.i).textContent;
+    var ok=function(){b.textContent="kopiert";setTimeout(function(){b.textContent="kopieren";},1500);};
+    try{ navigator.clipboard.writeText(t).then(ok,function(){sel(b.dataset.i);}); }catch(err){ sel(b.dataset.i); }
+  });
+  function sel(i){ var r=document.createRange(); r.selectNodeContents(document.getElementById("c"+i)); var s=getSelection(); s.removeAllRanges(); s.addRange(r); }
+})();
+</script>

@@ -37,6 +37,11 @@ Im Repository: **Settings → Pages → Build and deployment**
 - Source: **Deploy from a branch**
 - Branch: **main**, Ordner **/ (root)** → **Save**
 
+**Wichtig:** Bei einem kostenlosen GitHub-Konto gibt es Pages nur für **öffentliche** Repositories.
+Falls „Pages“ fehlt oder gesperrt ist: Settings → General → ganz unten „Danger Zone“ →
+**Change visibility → Make public**. Die Ergebnisse der Schüler liegen nicht im Repository,
+sondern nur in deiner Google-Tabelle – sie werden dadurch also nicht öffentlich.
+
 Nach 1–2 Minuten ist der Test erreichbar unter:
 
 **https://kathy-flower.github.io/Unterricht/**

@@ -21,13 +21,19 @@ nach längerer Elternzeit zurück). Antworte immer auf **Deutsch**, duze sie, se
 | | |
 |---|---|
 | Klasse | eine 9. Klasse, **31 Schüler\*innen**, sehr heterogen (Noten 1+ bis 6) |
-| Lehrbuch | **Lambacher Schweizer 9, NRW Gymnasium (G9)** |
+| Lehrbuch | **Lambacher Schweizer 9, NRW Gymnasium (G9)** – wird **selten** genutzt: Material immer eigenständig erstellen, **keine Seitenzahlen/Buchverweise** angeben |
 | Stunden | **Mittwoch 45 min**, **Donnerstag 90 min** |
 | Technik | iPads (Schüler), Beamer, GeoGebra, Taschenrechner **calcoom iq-z8 plus** (Tastenfolgen nur angeben, wenn sicher bekannt) |
 | Curriculum | `grundlagen/curriculum-klasse9.md` (schulintern, Reihenfolge verbindlich) |
 | Methoden | Klasse kennt alle gängigen kooperativen Methoden → `grundlagen/methoden.md` |
+| Vorwissen | Binomische Formeln (Klasse 8) sind bekannt |
 
 ## Standards (Details in `grundlagen/`)
+
+- **In jeder Stunde Pflicht**: **Problemorientierung** (echte Frage/Problem am Anfang, nicht
+  „Heute lernen wir …“) und **Lebenswelt- bzw. Aktualitätsbezug für 14–15-Jährige**
+  (z. B. Social Media, Gaming, Smartphone, Sport, Musik, Mode, Umwelt/Klima, aktuelle Nachrichten,
+  Schulalltag). Kontexte müssen mathematisch ehrlich sein – keine erfundenen „Fakten“.
 
 - **Unterrichtsplanung**: `grundlagen/unterrichtsplanung.md` – kompetenzorientiert, kognitiv
   aktivierend, transparent, mit Verlaufsplan-Tabelle. Orientierung am Stand der NRW-Seminarausbildung
@@ -50,6 +56,8 @@ Word-Vorschau prüfen: `soffice --headless --convert-to pdf` (falls nötig vorhe
 `apt-get install -y --no-install-recommends libreoffice-writer`).
 
 Mathematische Notation in Word: Unicode (√, ², ³, ·, −, ≈, π, ≤). Brüche als a/b (bzw. hochgestellt/tiefgestellt).
+Periodenstrich (Kombinationszeichen U+0305) nur über 0, 3, 6, 8, 9 – über 1, 4, 5, 7 ist er im Druck
+unsichtbar; sonst „0,777…“ schreiben.
 
 ## Datenschutz
 

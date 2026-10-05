@@ -93,7 +93,7 @@ liste(d, [
 ueberschrift(d, "Didaktische Reserve und Hausaufgabe", 3)
 liste(d, [
     "**Reserve**: „Finde eine irrationale Zahl zwischen 3 und 4 – und eine, die keine Wurzel ist.“ (z. B. √10, π, 3,1011011101111…)",
-    "**Hausaufgabe**: AB Aufgabe 4 (Zahlen einordnen) und LS 9, Kap. 3: S. __ Nr. __ (bitte eintragen).",
+    "**Hausaufgabe**: AB Aufgabe 4 (Zahlen einordnen) und: „Suche im Alltag eine Situation, in der √2 oder π vorkommt.“ (Auflösung Do: DIN-A4-Blatt!)",
 ])
 
 d.save(ORDNER + "11-stunde-irrationale-zahlen.docx")
@@ -137,7 +137,7 @@ aufgabe(m, 3, "Für Expertinnen und Experten:", sterne=3,
                "**Erkläre**, warum das Argument bei √4 nicht funktioniert. Ist das ein Problem?"],
         platz=5)
 
-aufgabe(m, 4, "**Ordne** die Zahlen in die Tabelle ein (Hausaufgabe):  √36 · √37 · 0,7̅ · −√81 · π · "
+aufgabe(m, 4, "**Ordne** die Zahlen in die Tabelle ein (Hausaufgabe):  √36 · √37 · 0,8̅ · −√81 · π · "
               "√(4/9) · √0,4 · √0,04 · 5,121121112…", sterne=1)
 tabelle(m, ["rational", "irrational"], [["\n\n\n", "\n\n\n"]], breiten_cm=[8.6, 8.6])
 
@@ -183,7 +183,7 @@ absatz(m, "**Aufgabe 3a**: 3 · q² endet auf 0, 3, 2, 7, 8, 5, 8, 7, 2, 3 (für
           "Fällen sind p und q durch 5 teilbar → Widerspruch → √3 ist irrational.")
 absatz(m, "**Aufgabe 3b**: 4 · q² endet auf 0, 4 oder 6 – diese Ziffern kommen auch bei Quadratzahlen vor. "
           "Es entsteht kein Widerspruch. Das ist kein Problem, denn √4 = 2 = 2/1 ist tatsächlich rational.")
-absatz(m, "**Aufgabe 4**: rational: √36 = 6, 0,7̅ = 7/9, −√81 = −9, √(4/9) = 2/3, √0,04 = 0,2 · "
+absatz(m, "**Aufgabe 4**: rational: √36 = 6, 0,8̅ = 8/9, −√81 = −9, √(4/9) = 2/3, √0,04 = 0,2 · "
           "irrational: √37, π, √0,4, 5,121121112…")
 absatz(m, "**Exit-Ticket**: rational: √49 = 7, 0,4̅ = 4/9, √0,09 = 0,3 · irrational: √50, √0,9, 2,1010010001…")
 

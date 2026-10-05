@@ -12,8 +12,8 @@ verfügbarer Wochen (sonst: Platzhalter-Daten, Rhythmus Mi 45 min / Do 90 min, c
 
 1. Lies `CLAUDE.md`, `grundlagen/curriculum-klasse9.md` (Abschnitt zum Thema),
    `grundlagen/unterrichtsplanung.md`, `grundlagen/methoden.md`.
-2. Plane die Abfolge entlang der Buchkapitel (Lambacher Schweizer 9 NRW) und der
-   Kompetenzerwartungen. Jede Kompetenzerwartung muss mindestens einer Stunde zugeordnet sein.
+2. Plane die Abfolge entlang der Curriculum-Kapitel und der Kompetenzerwartungen
+   (keine Buchverweise; jede Stunde mit Problem und Lebensweltbezug). Jede Kompetenzerwartung muss mindestens einer Stunde zugeordnet sein.
 3. Pro Stunde: Nr. · Tag/Dauer · Thema · Kernanliegen (1 Satz) · zentrale Methode ·
    Kompetenzen (Kürzel) · Material/Medien · Hausaufgabe/Übung.
 4. Einplanen: Diagnose zu Beginn (Vorwissen), Übungs-/Vertiefungsstunde(n),

@@ -3,7 +3,7 @@ from docx_bausteine import *
 
 d = neues_dokument(quer=True, rand_cm=1.5, schriftgroesse=11)
 titel(d, "Reihenplanung: Wurzeln (Klasse 9)",
-      "Lambacher Schweizer 9 NRW, Kap. „Wurzeln“ · Beginn 02.09.2026 · Mi 45 min / Do 90 min")
+      "Unterrichtsvorhaben 1 · Beginn 02.09.2026 · Mi 45 min / Do 90 min")
 
 absatz(d, "**Kompetenzerwartungen (Curriculum)**: (2) rationale und irrationale Zahlen unterscheiden · "
           "(6) Quadratwurzeln näherungsweise bestimmen (Algorithmus nutzen und beschreiben) · "
@@ -20,31 +20,33 @@ tabelle(d, KOPF, [
     ["✔", "Mi 02.09.", "45", "**Einstieg & Vorwissen**: Quadratzahlen bis 25², Quadrieren, Flächeninhalt von Quadraten. Kurze Diagnose.",
      "Kugellager (Kopfrechnen), Ich-Du-Wir", "Ope-1", "Diagnosetest Wurzeln (wurzeln.html)"],
     ["✔", "Do 03.09.", "90", "**Quadratwurzeln**: Aus dem Flächeninhalt die Seitenlänge bestimmen. Definition √a (a ≥ 0) als nichtnegative Zahl, deren Quadrat a ist; Radizieren als Umkehrung des Quadrierens.",
-     "Think-Pair-Share, Merkkasten", "(9), Ope-4, Kom-3", "Buch Kap. 1"],
+     "Think-Pair-Share, Merkkasten", "(9), Ope-4, Kom-3", "Merkkasten"],
     ["✔", "Mi 09.09.", "45", "**Übung Quadratwurzeln**: Wurzeln aus Dezimalzahlen und Brüchen (√0,04; √(9/16)), Gleichungen x² = a.",
-     "Lerntempoduett", "(7), Ope-1", "Buch Kap. 1"],
+     "Lerntempoduett", "(7), Ope-1", "–"],
     ["✔", "Do 10.09.", "90", "**Wurzeln näherungsweise bestimmen I**: Intervallschachtelung für √2 – „Zwischen welchen Zahlen liegt √2?“",
-     "Partnerarbeit, Tabelle", "(6), Ope-8, Pro-5", "Buch Kap. 2"],
+     "Partnerarbeit, Tabelle", "(6), Ope-8, Pro-5", "–"],
     ["✔", "Mi 16.09.", "45", "**Wurzeln näherungsweise bestimmen II**: Heron-Verfahren, Algorithmus mit eigenen Worten beschreiben; ggf. Tabellenkalkulation auf dem iPad.",
      "Think-Pair-Share", "(6), Kom-4", "iPads"],
     ["✔", "Do 17.09.", "90", "**Übung Näherungsverfahren** und Taschenrechner; Vergleich der Verfahren (Schnelligkeit, Genauigkeit).",
-     "Stationen / Lerntempoduett", "(6), Pro-5, Kom-4", "Buch Kap. 2"],
+     "Stationen / Lerntempoduett", "(6), Pro-5, Kom-4", "–"],
     ["✔", "Mi 23.09.", "45", "**Wurzelgesetze entdecken**: √a · √b = √(a·b) und √a : √b = √(a:b) an Beispielen; Gegenbeispiel √(a+b) ≠ √a + √b.",
-     "Think-Pair-Share", "(7), Ope-5, Arg-2", "Buch Kap. 4"],
+     "Think-Pair-Share", "(7), Ope-5, Arg-2", "–"],
     ["✔", "Do 24.09.", "90", "**Geschickt mit Wurzeln rechnen**: teilweises Wurzelziehen (√50 = 5√2), gleichartige Wurzeln zusammenfassen.",
-     "Lerntempoduett", "(7), Ope-1, Ope-5", "Buch Kap. 4"],
-    ["✔", "Mi 30.09.", "45", "**Übung Wurzelgesetze**", "Partnerkontrolle", "(7)", "Buch Kap. 4"],
+     "Lerntempoduett", "(7), Ope-1, Ope-5", "–"],
+    ["✔", "Mi 30.09.", "45", "**Übung Wurzelgesetze**", "Partnerkontrolle", "(7)", "–"],
     ["✔", "Do 01.10.", "90", "**Vertiefung Wurzelterme**: Terme mit Wurzeln vereinfachen, Fehler finden.",
-     "Fehlerdetektiv", "(7), Ope-5", "Buch Kap. 4"],
+     "Fehlerdetektiv", "(7), Ope-5", "–"],
 ], breiten_cm=B, schrift=9)
 
 ueberschrift(d, "Teil 2: bis zu den Herbstferien (07.10. – 15.10.)", 3)
 tabelle(d, KOPF, [
     ["▶", "Mi 07.10.", "45", "**Irrationale Zahlen**: Stundenfrage „Kann man √2 exakt als Bruch schreiben?“ – Brüche testen, Endziffern-Argument, Begriff irrationale Zahl, rational ⇔ abbrechend oder periodisch.",
      "Think-Pair-Share, Exit-Ticket", "(2), Arg-2, Arg-7, Kom-3", "Entwurf + Material Stunde 11 (liegt bei)"],
-    ["○", "Do 08.10.", "90", "**Reelle Zahlen und Radizieren**: Zahlbereiche ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ ordnen; Kubikwurzel (Würfel: Volumen → Kantenlänge), n-te Wurzel als Umkehrung des Potenzierens; irrationale Zahlen auf dem Zahlenstrahl.",
-     "Placemat (Zahlbereiche), Lerntempoduett", "(2), (9), Arg-4, Ope-4", "AB Zahlbereiche/Radizieren · Übungswebsite Teil 1"],
-    ["○", "Mi 14.10.", "45", "**Wiederholung Terme** (für die KA): zusammenfassen, ausmultiplizieren, ausklammern, Klammerregeln; Brücke zu Wurzeltermen: √3 · (2 + √3).",
+    ["○", "Do 08.10.", "90", "**Warum hat ein DIN-A4-Blatt genau diese Maße? / Wie lang ist die Kante meines Minecraft-Würfels?** "
+     "Teil 1: √2 als Seitenverhältnis von DIN-A-Papier, Zahlbereiche ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ. "
+     "Teil 2: Kubikwurzel und n-te Wurzel als Umkehrung des Potenzierens (Minecraft, Follower-Wachstum, DIN A0).",
+     "Think-Pair-Share, Placemat, Lerntempoduett", "(2), (9), Arg-4, Ope-4, Mod-7", "Entwurf + Material Stunde 12 (liegt bei)"],
+    ["○", "Mi 14.10.", "45", "**Wiederholung Terme** (für die KA): zusammenfassen, ausmultiplizieren, ausklammern, **binomische Formeln**; Brücke zu Wurzeltermen: (2 + √3)², (√5 − 1)(√5 + 1).",
      "Fehlerdetektiv, Partnerkontrolle", "Ope-5", "AB Terme (★/★★/★★★)"],
     ["○", "Do 15.10.", "90", "**Vertiefung & Diagnose**: Lerntheke mit Pflicht- und Wahlstationen (Wurzeln, Näherung, irrationale Zahlen, Terme); „Ich kann …“-Checkliste zur Selbsteinschätzung.",
      "Lerntheke / Stationen", "alle", "Stationen, Checkliste · **Übungswebsite** für die Ferien"],
@@ -65,7 +67,8 @@ liste(d, [
     "**Differenzierung** durchgehend: ★ Mindeststandard (Quadratwurzeln im Kopf, einfache Wurzelgesetze), ★★ Standard, ★★★ Begründen/Beweisen (z. B. √3 ist irrational).",
     "**Typische Fehlvorstellungen**: √(a + b) = √a + √b · „Der Taschenrechner zeigt eine endliche Zahl, also ist √2 rational“ · „Jede Wurzel ist irrational“ (√49) · √(−4) = −2.",
     "**Klassenarbeit**: Termin 05.11. ist ein Vorschlag. Alternativ vor den Ferien am 15.10.; dann entfällt die Lerntheke als eigene Stunde.",
-    "**Terme**: Was genau wiederholt wird, richtet sich nach Klasse 8. Wenn die binomischen Formeln schon behandelt wurden, nehme ich sie mit auf.",
+    "**Terme**: Wiederholung inkl. binomischer Formeln (aus Klasse 8 bekannt), verknüpft mit Wurzeltermen.",
+    "**Lebensweltbezug** in jeder Stunde (DIN-A-Papier, Minecraft, Social Media …); das Lehrbuch wird nur ergänzend genutzt.",
 ])
 
 d.save("reihen/01-wurzeln/00-reihenplanung.docx")

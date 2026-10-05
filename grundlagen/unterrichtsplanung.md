@@ -8,23 +8,29 @@ seminarfeste** Planung – keine 20-seitigen Entwürfe.
 
 1. **Kompetenzorientierung** – ein klares Stundenziel, formuliert als Kompetenz
    („Die SuS … , indem sie …“), bezogen auf das Curriculum (`curriculum-klasse9.md`).
-2. **Kognitive Aktivierung** – Einstieg mit Problem, Widerspruch, Vermutung oder
+2. **Problemorientierung und Lebensweltbezug (Wunsch der Lehrerin, immer!)** – Jede Stunde
+   startet mit einem Problem, das 14–15-Jährige interessiert: Social Media (Follower, Views,
+   Wachstum), Gaming (Minecraft-Blöcke, Pixel, Level), Smartphone/Display, Sport, Musik/Streaming,
+   Mode/Sneaker, Klima/Umwelt, Taschengeld/Preise, Alltagsgegenstände (DIN-A4-Blatt, Pizza, Dosen).
+   Aktuelle Daten nur mit Quelle oder als ausdrücklich gerundete/fiktive Werte kennzeichnen.
+   Auch Übungsaufgaben sollen möglichst einen Kontext haben (nicht nur „Päckchen“).
+3. **Kognitive Aktivierung** – Einstieg mit Problem, Widerspruch, Vermutung oder
    Schätzfrage statt Ankündigung. Die SuS denken zuerst selbst, bevor erklärt wird.
-3. **Transparenz** – Stundenfrage/Ziel sichtbar (Tafel/Beamer), Ablauf kurz angekündigt,
+4. **Transparenz** – Stundenfrage/Ziel sichtbar (Tafel/Beamer), Ablauf kurz angekündigt,
    am Ende Rückbezug auf die Stundenfrage.
-4. **Ich – Du – Wir** – kooperative Phasen haben immer eine Einzelphase vor dem Austausch
+5. **Ich – Du – Wir** – kooperative Phasen haben immer eine Einzelphase vor dem Austausch
    (echte Denkzeit, alle sind beteiligt).
-5. **Differenzierung** – Aufgaben in ★/★★/★★★, Tippkarten, Lösungen zur Selbstkontrolle,
+6. **Differenzierung** – Aufgaben in ★/★★/★★★, Tippkarten, Lösungen zur Selbstkontrolle,
    „Expertenaufgaben“ für Schnelle; Mindeststandard für alle klar markiert.
-6. **Sicherung** – jede Stunde endet mit einer Ergebnissicherung (Merkkasten, Heft) und
+7. **Sicherung** – jede Stunde endet mit einer Ergebnissicherung (Merkkasten, Heft) und
    möglichst einem kurzen **Exit-Ticket / Lernstandscheck** (2–3 Aufgaben, AFB I–II).
-7. **Sprachsensibilität** – Fachbegriffe einführen und visualisieren, Wortspeicher /
+8. **Sprachsensibilität** – Fachbegriffe einführen und visualisieren, Wortspeicher /
    Satzbausteine bei Erklär- und Begründungsaufgaben.
-8. **Digitale Medien mit Mehrwert** – iPads/GeoGebra dort, wo Dynamik, Visualisierung oder
+9. **Digitale Medien mit Mehrwert** – iPads/GeoGebra dort, wo Dynamik, Visualisierung oder
    schnelle Rückmeldung echten Nutzen haben (nicht als Selbstzweck).
-9. **Effizienz** – klare Arbeitsaufträge (Operator + Sozialform + Zeit + erwartetes
+10. **Effizienz** – klare Arbeitsaufträge (Operator + Sozialform + Zeit + erwartetes
    Produkt), Material ohne Erklärungsbedarf, Zeitpuffer einplanen.
-10. **Fehlerkultur** – typische Fehlvorstellungen antizipieren und gezielt thematisieren.
+11. **Fehlerkultur** – typische Fehlvorstellungen antizipieren und gezielt thematisieren.
 
 ## Rhythmus der Stunden
 
@@ -50,6 +56,5 @@ seminarfeste** Planung – keine 20-seitigen Entwürfe.
    Reflexion/Exit-Ticket · Hausaufgabe. Zeitangaben kumulativ oder in Minuten.
 6. **Tafelbild / Merkkasten** (geplantes Ergebnis)
 7. **Erwartete Schülerlösungen** zu den zentralen Aufgaben
-8. **Didaktische Reserve** und **Hausaufgabe** (mit Buchbezug: „LS 9, S. …, Nr. …“ nur,
-   wenn die Seitenzahl sicher bekannt ist – sonst Platzhalter „S. __ Nr. __“)
+8. **Didaktische Reserve** und **Hausaufgabe** (immer mit eigenem Material, **ohne Buchverweise**)
 9. **Anhang**: alle Materialien (AB, Tippkarten, Lösungen, Exit-Ticket)

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Wurzeln Diagnosetest</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<style>
+:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#f8fafc;color:#1e293b}
+img{max-width:100%}
+.perspective{perspective:1000px}
+.transform-style{transform-style:preserve-3d;transition:transform .5s}
+.backface-hidden{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.rotate-y-180{transform:rotateY(180deg)}
+math{font-size:1.1em}
+#card-inner math{font-size:1.15em}
+nav{top:env(safe-area-inset-top,0px)!important}
+nav button{padding-left:1rem;padding-right:1rem}
+@media (prefers-reduced-motion:reduce){.transform-style{transition:none}}
+</style>
+</head>
+<body>
+<div class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-indigo-600 text-white shadow-md py-6 px-4 text-center">
+        <h1 class="text-2xl md:text-3xl font-bold">Mathe-Diagnosetest: Wurzeln</h1>
+        <p class="text-indigo-100 mt-1 text-sm md:text-base">Klasse 9 • Gymnasium NRW (Anforderungsbereiche I-III & Flashcards)</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-10 shadow-xs">
+        <div class="max-w-4xl mx-auto flex justify-center">
+            <button onclick="switchTab('test')" id="tab-test" class="px-6 py-3 font-semibold text-indigo-600 border-b-2 border-indigo-600 transition-colors">
+                📝 Diagnosetest
+            </button>
+            <button onclick="switchTab('flashcards')" id="tab-flashcards" class="px-6 py-3 font-semibold text-slate-500 hover:text-indigo-600 border-b-2 border-transparent transition-colors">
+                🗂️ Lernkarten (Flashcards)
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="max-w-4xl w-full mx-auto p-4 md:p-6 grow">
+
+        <!-- TEST SECTION -->
+        <section id="section-test" class="space-y-6">
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg text-sm text-blue-800">
+                <span class="font-bold">Hinweis:</span> Es ist keine Anmeldung oder Namenseingabe erforderlich. Bearbeite die Aufgaben und klicke am Ende auf „Auswertung anzeigen“, um deine Ergebnisse und die Musterlösungen direkt zu sehen.
+            </div>
+
+            <form id="quiz-form" class="space-y-8">
+                <!-- Question 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-xs border border-slate-200">
+                    <span class="inline-block bg-indigo-100 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-full mb-2">AFB I (Reproduktion)</span>
+                    <h3 class="font-bold text-lg mb-3">1. Berechne den Wert des Terms: $\sqrt{196}$</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q1" value="a" class="text-indigo-600 focus:ring-indigo-500">
+                            <span>$12$</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q1" value="b" class="text-indigo-600 focus:ring-indigo-500" data-correct="true">
+                            <span>$14$</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q1" value="c" class="text-indigo-600 focus:ring-indigo-500">
+                            <span>$16$</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-xs border border-slate-200">
+                    <span class="inline-block bg-indigo-100 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-full mb-2">AFB I (Reproduktion)</span>
+                    <h3 class="font-bold text-lg mb-3">2. Welcher der folgenden Ausdrücke ist als Produkt von Wurzeln nach den Wurzelgesetzen äquivalent zu $\sqrt{75}$?</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q2" value="a" class="text-indigo-600 focus:ring-indigo-500">
+                            <span>$\sqrt{25} \cdot \sqrt{2}$</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q2" value="b" class="text-indigo-600 focus:ring-indigo-500" data-correct="true">
+                            <span>$5\sqrt{3}$ (bzw. $\sqrt{25} \cdot \sqrt{3}$)</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q2" value="c" class="text-indigo-600 focus:ring-indigo-500">
+                            <span>$3\sqrt{5}$</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-xs border border-slate-200">
+                    <span class="inline-block bg-indigo-100 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-full mb-2">AFB II (Zusammenhänge anwenden)</span>
+                    <h3 class="font-bold text-lg mb-3">3. Vereinfache den Term so weit wie möglich: $\sqrt{18} + \sqrt{50} - \sqrt{8}$</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q3" value="a" class="text-indigo-600 focus:ring-indigo-500" data-correct="true">
+                            <span>$6\sqrt{2}$</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q3" value="b" class="text-indigo-600 focus:ring-indigo-500">
+                            <span>$\sqrt{60}$</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q3" value="c" class="text-indigo-600 focus:ring-indigo-500">
+                            <span>$8\sqrt{2}$</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="bg-white p-6 rounded-xl shadow-xs border border-slate-200">
+                    <span class="inline-block bg-indigo-100 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-full mb-2">AFB II (Zusammenhänge anwenden)</span>
+                    <h3 class="font-bold text-lg mb-3">4. Mache den Nenner des Terms rational: $\frac{6}{\sqrt{3}}$</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q4" value="a" class="text-indigo-600 focus:ring-indigo-500">
+                            <span>$\frac{\sqrt{3}}{2}$</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q4" value="b" class="text-indigo-600 focus:ring-indigo-500" data-correct="true">
+                            <span>$2\sqrt{3}$</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q4" value="c" class="text-indigo-600 focus:ring-indigo-500">
+                            <span>$3\sqrt{2}$</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="bg-white p-6 rounded-xl shadow-xs border border-slate-200">
+                    <span class="inline-block bg-indigo-100 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-full mb-2">AFB III (Transfer & Textaufgabe)</span>
+                    <h3 class="font-bold text-lg mb-3">5. Textaufgabe: Ein quadratischer Raum hat eine Fläche von $32\text{ m}^2$. Wie lang ist die Diagonale des Raumes ungefähr?</h3>
+                    <p class="text-xs text-slate-500 mb-2">(Hinweis: Berechne zuerst die Seitenlänge $a$ und nutze den Satz des Pythagoras für die Diagonale $d = a\sqrt{2}$.)</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q5" value="a" class="text-indigo-600 focus:ring-indigo-500" data-correct="true">
+                            <span>Ca. $8\text{ m}$</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q5" value="b" class="text-indigo-600 focus:ring-indigo-500">
+                            <span>Ca. $6,3\text{ m}$</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q5" value="c" class="text-indigo-600 focus:ring-indigo-500">
+                            <span>Ca. $11,3\text{ m}$</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="bg-white p-6 rounded-xl shadow-xs border border-slate-200">
+                    <span class="inline-block bg-indigo-100 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-full mb-2">AFB III (Transfer & Textaufgabe)</span>
+                    <h3 class="font-bold text-lg mb-3">6. Textaufgabe: Ein Handwerker baut eine Schaukel. Das Seil soll so bemessen werden, dass für eine bestimmte Konstruktion die Seitenlänge eines Dreiecks genau $\sqrt{45}\text{ m}$ beträgt. Welches Intervall schätzt den Wert am besten ein?</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q6" value="a" class="text-indigo-600 focus:ring-indigo-500">
+                            <span>Zwischen $5\text{ m}$ und $6\text{ m}$</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q6" value="b" class="text-indigo-600 focus:ring-indigo-500" data-correct="true">
+                            <span>Zwischen $6\text{ m}$ und $7\text{ m}$ ($6,70\text{ m}$)</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q6" value="c" class="text-indigo-600 focus:ring-indigo-500">
+                            <span>Zwischen $7\text{ m}$ und $8\text{ m}$</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="text-center pt-4">
+                    <button type="button" onclick="evaluateQuiz()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-xl shadow-md transition-all cursor-pointer">
+                        Auswertung anzeigen
+                    </button>
+                </div>
+            </form>
+
+            <!-- Results Box -->
+            <div id="results-container" class="hidden bg-white p-6 rounded-xl shadow-md border border-indigo-100 space-y-4">
+                <h3 class="text-xl font-bold text-slate-800 border-b pb-2">Dein Ergebnis</h3>
+                <div id="score-display" class="text-lg font-semibold text-indigo-600"></div>
+                <div id="feedback-list" class="space-y-4 text-sm"></div>
+            </div>
+        </section>
+
+        <!-- FLASHCARDS SECTION -->
+        <section id="section-flashcards" class="hidden space-y-6">
+            <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg text-sm text-amber-800">
+                <span class="font-bold">Lernkarten-Modus:</span> Tippe auf die Karte, um die Rückseite mit der Antwort bzw. Erklärung anzuzeigen. Nutze die Buttons darunter, um weiterzuschalten.
+            </div>
+
+            <div class="flex flex-col items-center justify-center py-6">
+                <!-- Flashcard Element -->
+                <div id="flashcard" onclick="flipCard()" class="w-full max-w-xl h-80 perspective cursor-pointer">
+                    <div id="card-inner" class="relative w-full h-full duration-500 transform-style shadow-lg rounded-2xl">
+                        <!-- Front -->
+                        <div class="absolute inset-0 bg-white border border-slate-200 rounded-2xl p-8 flex flex-col justify-between backface-hidden">
+                            <span class="text-xs font-bold text-indigo-500 uppercase tracking-wider" id="fc-category">Kategorie</span>
+                            <div class="text-center my-auto">
+                                <h3 class="text-xl font-bold text-slate-800" id="fc-front-text">Frage</h3>
+                            </div>
+                            <p class="text-xs text-slate-400 text-center">Zum Umdrehen antippen 👆</p>
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute inset-0 bg-indigo-600 text-white rounded-2xl p-8 flex flex-col justify-between backface-hidden rotate-y-180">
+                            <span class="text-xs font-bold text-indigo-200 uppercase tracking-wider">Antwort & Erklärung</span>
+                            <div class="text-center my-auto">
+                                <p class="text-lg font-medium" id="fc-back-text">Antwort</p>
+                            </div>
+                            <p class="text-xs text-indigo-200 text-center">Nochmal tippen zum Zurückdrehen</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="flex items-center space-x-4 mt-6">
+                    <button onclick="prevCard()" class="bg-white border border-slate-300 hover:bg-slate-100 px-4 py-2 rounded-lg font-medium shadow-xs cursor-pointer">⬅️ Vorherige</button>
+                    <span id="card-counter" class="text-sm font-semibold text-slate-600">1 / 5</span>
+                    <button onclick="nextCard()" class="bg-white border border-slate-300 hover:bg-slate-100 px-4 py-2 rounded-lg font-medium shadow-xs cursor-pointer">Nächste ➡️</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 text-xs text-slate-400 border-t border-slate-200 mt-auto">
+        Erstellt für den Mathematikunterricht (Klasse 9) • Läuft direkt im Browser ohne Datenspeicherung.
+    </footer>
+
+    <!-- Script Logic -->
+    <script>
+
+        const mathOpts = { delimiters: [{left: '$', right: '$', display: false}], throwOnError: false, output: 'mathml' };
+        function renderMath(el) { if (window.renderMathInElement) renderMathInElement(el, mathOpts); }
+        function renderInto(id, html) { const el = document.getElementById(id); el.innerHTML = html; renderMath(el); }
+
+        // Tab Switcher
+        function switchTab(tab) {
+            const testSec = document.getElementById('section-test');
+            const fcSec = document.getElementById('section-flashcards');
+            const tabTest = document.getElementById('tab-test');
+            const tabFc = document.getElementById('tab-flashcards');
+
+            if(tab === 'test') {
+                testSec.classList.remove('hidden');
+                fcSec.classList.add('hidden');
+                tabTest.className = "px-6 py-3 font-semibold text-indigo-600 border-b-2 border-indigo-600 transition-colors";
+                tabFc.className = "px-6 py-3 font-semibold text-slate-500 hover:text-indigo-600 border-b-2 border-transparent transition-colors";
+            } else {
+                testSec.classList.add('hidden');
+                fcSec.classList.remove('hidden');
+                tabFc.className = "px-6 py-3 font-semibold text-indigo-600 border-b-2 border-indigo-600 transition-colors";
+                tabTest.className = "px-6 py-3 font-semibold text-slate-500 hover:text-indigo-600 border-b-2 border-transparent transition-colors";
+            }
+        }
+
+        // Quiz Evaluation Logic
+        function evaluateQuiz() {
+            const questions = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6'];
+            let score = 0;
+            let feedbackHTML = '';
+
+            questions.forEach((q, index) => {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                const correctInput = document.querySelector(`input[name="${q}"][data-correct="true"]`);
+                const questionContainer = correctInput.closest('.bg-white');
+
+                // Reset styles
+                questionContainer.classList.remove('border-emerald-400', 'border-rose-400', 'bg-emerald-50/30', 'bg-rose-50/30');
+
+                if (selected && selected.dataset.correct === "true") {
+                    score++;
+                    questionContainer.classList.add('border-emerald-400', 'bg-emerald-50/30');
+                    feedbackHTML += `<div class="p-3 bg-emerald-100 text-emerald-900 rounded-lg"><strong>Frage ${index + 1}:</strong> Richtig! Gut gelöst.</div>`;
+                } else {
+                    questionContainer.classList.add('border-rose-400', 'bg-rose-50/30');
+                    const correctText = correctInput.nextElementSibling.innerHTML;
+                    feedbackHTML += `<div class="p-3 bg-rose-100 text-rose-900 rounded-lg"><strong>Frage ${index + 1}:</strong> Leider falsch. Die richtige Antwort lautet: <em>${correctText}</em></div>`;
+                }
+            });
+
+            const resultsContainer = document.getElementById('results-container');
+            const scoreDisplay = document.getElementById('score-display');
+            const feedbackList = document.getElementById('feedback-list');
+
+            scoreDisplay.innerText = `Du hast ${score} von ${questions.length} Aufgaben richtig gelöst!`;
+            feedbackList.innerHTML = feedbackHTML;
+            resultsContainer.classList.remove('hidden');
+            resultsContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Flashcards Data
+        const flashcards = [
+            {
+                category: "Wurzelgesetze",
+                front: "Wie lautet das Multiplikationsgesetz für Wurzeln ($\\sqrt{a} \\cdot \\sqrt{b}$)?",
+                back: "$\\sqrt{a} \\cdot \\sqrt{b} = \\sqrt{a \\cdot b}$ (gilt für $a \\ge 0, b \\ge 0$)"
+            },
+            {
+                category: "Wurzelgesetze",
+                front: "Wie lautet das Divisionsgesetz für Wurzeln $\\frac{\\sqrt{a}}{\\sqrt{b}}$?",
+                back: "$\\frac{\\sqrt{a}}{\\sqrt{b}} = \\sqrt{\\frac{a}{b}}$ (gilt für $a \\ge 0, b > 0$)"
+            },
+            {
+                category: "Näherungsverfahren",
+                front: "Wie funktioniert das Intervallschachtelungs- oder Heron-Verfahren (Newton-Verfahren) grob zur Näherung von Wurzeln?",
+                back: "Man nähert sich dem Wert schrittweise an, indem man schätzt, quadriert, vergleicht und den Mittelwert aus Schätzwert und Zahl/Schätzwert bildet (z. B. Intervallsuche: 3²=9, 4²=16, also liegt $\\sqrt{10}$ zwischen 3 und 4)."
+            },
+            {
+                category: "Zahlenbereiche",
+                front: "Was ist eine irrationale Zahl?",
+                back: "Eine Zahl, die sich <em>nicht</em> als Bruch zweier ganzer Zahlen darstellen lässt. Ihre Dezimaldarstellung ist unendlich und nicht periodisch (z. B. $\\sqrt{2}$, $\\pi$)."
+            },
+            {
+                category: "Beweis: Warum ist $\\sqrt{2}$ irrational?",
+                front: "Welche Beweismethode nutzt man meistens, um zu zeigen, dass $\\sqrt{2}$ keine rationale Zahl ist?",
+                back: "Einen indirekten Beweis (Beweis durch Widerspruch): Man nimmt an, $\\sqrt{2} = \\frac{p}{q}$ (voll gekürzter Bruch). Durch Quadrieren folgt $2q^2 = p^2$, woraus man ableitet, dass sowohl $p$ als auch $q$ gerade sein müssen – im Widerspruch dazu, dass der Bruch vollständig gekürzt war."
+            }
+        ];
+
+        let currentCardIndex = 0;
+        let isFlipped = false;
+
+        function updateCard() {
+            const card = flashcards[currentCardIndex];
+            renderInto('fc-category', card.category);
+            renderInto('fc-front-text', card.front);
+            renderInto('fc-back-text', card.back);
+            document.getElementById('card-counter').innerText = `${currentCardIndex + 1} / ${flashcards.length}`;
+
+            if(isFlipped) {
+                flipCard(true); // reset flip
+            }
+        }
+
+        function flipCard(forceReset = false) {
+            const cardInner = document.getElementById('card-inner');
+            if(forceReset) {
+                isFlipped = false;
+                cardInner.style.transform = "rotateY(0deg)";
+                return;
+            }
+            isFlipped = !isFlipped;
+            cardInner.style.transform = isFlipped ? "rotateY(180deg)" : "rotateY(0deg)";
+        }
+
+        function nextCard() {
+            currentCardIndex = (currentCardIndex + 1) % flashcards.length;
+            updateCard();
+        }
+
+        function prevCard() {
+            currentCardIndex = (currentCardIndex - 1 + flashcards.length) % flashcards.length;
+            updateCard();
+        }
+
+        // Initial Load
+        renderMath(document.getElementById('quiz-form'));
+        updateCard();
+    </script>
+
+</div>
+</body>
+</html>

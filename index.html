@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Diagnosetest Mathe und Deutsch</title>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f7fb;--grid:#c9d9ec;--ink:#1b2b4b;--card:#fff;--acc:#ffd84d;--ok:#1e7a4d;--bad:#b3261e;--line:#9db4d3;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111a2b;--grid:#1f2d47;--ink:#e8eefb;--card:#182339;--line:#3b4f74;--ok:#6fd3a0;--bad:#ff8f86}}
+:root[data-theme="dark"]{--bg:#111a2b;--grid:#1f2d47;--ink:#e8eefb;--card:#182339;--line:#3b4f74;--ok:#6fd3a0;--bad:#ff8f86}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font:18px/1.5 "Atkinson Hyperlegible",system-ui,sans-serif;color:var(--ink);background-color:var(--bg);
+background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
+main{max-width:34rem;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:1.7rem;line-height:1.2;margin:8px 0 6px}
+.sub{margin:0 0 18px}
+.card{background:var(--card);border:2px solid var(--ink);border-radius:6px;padding:18px;box-shadow:4px 4px 0 var(--ink)}
+label{display:block;font-weight:700;margin-bottom:6px}
+input[type=text],input[type=number]{width:100%;font:inherit;padding:10px;border:2px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink)}
+button{font:inherit;font-weight:700;padding:12px 18px;border:2px solid var(--ink);border-radius:4px;background:var(--acc);color:#1b2b4b;cursor:pointer;margin-top:14px}
+button:focus-visible,input:focus-visible,.opt:focus-within{outline:3px solid var(--ink);outline-offset:2px}
+.opt{display:block;padding:10px 12px;border:2px solid var(--line);border-radius:4px;margin:8px 0;cursor:pointer}
+.opt input{margin-right:8px}
+.bar{height:8px;background:var(--grid);border-radius:4px;margin-bottom:14px}
+.bar i{display:block;height:100%;background:var(--ink);border-radius:4px}
+.tag{font-weight:700;margin-bottom:4px}
+.q{font-size:1.15rem;margin:6px 0 10px}
+.res code{display:block;white-space:pre-wrap;background:var(--bg);border:2px dashed var(--line);padding:10px;margin-top:10px;font-size:.95rem}
+.res p{margin:.4rem 0}
+.st{font-weight:700}.st.ok{color:var(--ok)}.st.bad{color:var(--bad)}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+// Hier die Web-App-URL aus Google Apps Script eintragen (siehe ANLEITUNG.md).
+// Solange leer, wird nur der Code am Ende angezeigt.
+var SCRIPT_URL="";
+var Q=[
+{t:"Mathe",q:"48 + 27 = ?",a:"75",g:"b"},
+{t:"Mathe",q:"Rechne schriftlich: 1274 − 856 = ?",a:"418",g:"b"},
+{t:"Mathe",q:"12 × 8 = ?",a:"96",g:"b"},
+{t:"Mathe",q:"144 ÷ 12 = ?",a:"12",g:"b"},
+{t:"Mathe",q:"Wie viel ist 3/4 von 20?",a:"15",g:"m"},
+{t:"Mathe",q:"Wie viel sind 20 % von 150?",a:"30",g:"m"},
+{t:"Mathe",q:"Löse: 3x + 5 = 20. Wie groß ist x?",a:"5",g:"h"},
+{t:"Mathe",q:"f(x) = 2x + 3. Wie groß ist f(4)?",a:"11",g:"h"},
+{t:"Mathe",q:"f(x) = x² − 4. Wie groß ist f(3)?",a:"5",g:"h"},
+{t:"Sprache",q:"Was bedeutet „subtrahieren“?",o:["plus rechnen","minus rechnen","mal rechnen","geteilt rechnen"],a:1},
+{t:"Sprache",q:"Das Ergebnis einer Addition heißt …",o:["Differenz","Produkt","Summe","Quotient"],a:2},
+{t:"Sprache",q:"Zehn ist ___ als sieben.",o:["größer","groß","am größten","größere"],a:0},
+{t:"Sprache",q:"Anna kauft 3 Hefte. Jedes Heft kostet 2,40 €. Sie bezahlt mit 10 €. Wie viel Rückgeld bekommt sie? (Antwort in Euro, z. B. 1,50)",a:"2,80",n:1},
+{t:"Sprache",q:"Ein Rechteck ist 8 cm lang und 5 cm breit. Der Umfang ist die Summe aller Seiten. Wie groß ist der Umfang in cm?",a:"26",n:1}
+];
+var i=0,ans=[],name="",app=document.getElementById("app");
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function start(){
+ app.innerHTML='<h1>Kurzer Test: Mathe und Deutsch</h1><p class="sub">14 Aufgaben, ca. 15 Minuten. Es ist kein Zeugnis. Ich möchte nur wissen, wo du stehst. Ohne Taschenrechner. Wenn du etwas nicht weißt, schreibe „?“.</p><div class="card"><label for="nm">Dein Name</label><input type="text" id="nm" autocomplete="off"><button id="go">Test starten</button></div>';
+ document.getElementById("go").onclick=function(){var v=document.getElementById("nm").value.trim();if(!v){document.getElementById("nm").focus();return}name=v;i=0;ans=[];show()}
+}
+function show(){
+ var x=Q[i],h='<div class="bar"><i style="width:'+(i/Q.length*100)+'%"></i></div><div class="card"><div class="tag">'+x.t+' · Aufgabe '+(i+1)+' von '+Q.length+'</div><div class="q">'+esc(x.q)+'</div>';
+ if(x.o){x.o.forEach(function(o,k){h+='<label class="opt"><input type="radio" name="r" value="'+k+'">'+esc(o)+'</label>'})}
+ else{h+='<input type="text" id="in" inputmode="decimal" autocomplete="off" aria-label="Antwort">'}
+ h+='<button id="nx">'+(i==Q.length-1?"Fertig":"Weiter")+'</button></div>';
+ app.innerHTML=h;
+ var f=document.getElementById("in");if(f)f.focus();
+ document.getElementById("nx").onclick=function(){
+  var v;
+  if(x.o){var c=document.querySelector('input[name=r]:checked');v=c?+c.value:-1}else{v=document.getElementById("in").value.trim()}
+  ans.push(v);i++;i<Q.length?show():finish()}
+}
+function norm(s){return String(s).replace(/\s/g,"").replace(/€/g,"").replace(".",",").replace(/,00$/,"").replace(/,(\d)0$/,",$1")}
+function finish(){
+ var b=0,m=0,h=0,s=0,det=[];
+ Q.forEach(function(x,k){
+  var ok=x.o?ans[k]===x.a:norm(ans[k])===norm(x.a);
+  det.push(ok?1:0);
+  if(ok){if(x.g=="b")b++;else if(x.g=="m")m++;else if(x.g=="h")h++;else s++}
+ });
+ var grp=b<=2?"C (schriftliches Rechnen wiederholen)":(b==4&&h>=2?"A (Funktionen und Terme)":"B (Brüche, Prozent, Terme)");
+ var lv=s<=1?"A0/A1":(s<=3?"A2":"B1");
+ var code=name+": Mathe Basis "+b+"/4, Mitte "+m+"/2, Hoch "+h+"/3; Sprache "+s+"/5 → Gruppe "+grp.split(" ")[0]+", Sprache ca. "+lv+"; richtig: "+det.join("");
+ app.innerHTML='<div class="bar"><i style="width:100%"></i></div><div class="card res"><h1>Geschafft, '+esc(name)+'!</h1><p>Mathe: <b>'+(b+m+h)+' von 9</b> richtig.</p><p>Sprache: <b>'+s+' von 5</b> richtig.</p><p id="st" class="st"></p><div id="fb" hidden><p>Zeige diesen Code deiner Lehrerin oder deinem Lehrer (Foto oder Screenshot):</p><code>'+esc(code)+'</code></div><button id="rs">Neu starten</button></div>';
+ document.getElementById("rs").onclick=start;
+ var st=document.getElementById("st"),fb=document.getElementById("fb");
+ if(!SCRIPT_URL){fb.hidden=false;return}
+ st.textContent="Ergebnis wird gesendet …";
+ var data={name:name,mathe:b+m+h,basis:b,mitte:m,hoch:h,sprache:s,gruppe:grp,niveau:lv,richtig:det.join(""),antworten:ans.map(function(v,k){var x=Q[k];return x.o?(v<0?"":x.o[v]):v}),code:code};
+ send(data,3);
+ function send(d,n){
+  fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(d)})
+  .then(function(){st.className="st ok";st.textContent="✓ Dein Ergebnis wurde an deine Lehrkraft gesendet."})
+  .catch(function(){if(n>1){setTimeout(function(){send(d,n-1)},2000)}else{st.className="st bad";st.textContent="Senden hat nicht geklappt. Bitte mache ein Foto von diesem Code:";fb.hidden=false}});
+ }
+}
+start();
+</script>
+</body>
+</html>
